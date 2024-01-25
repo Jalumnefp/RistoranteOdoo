@@ -1,35 +1,19 @@
 # -*- coding: utf-8 -*-
 {
-    'name': ".",
-
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
-
+    'name': "Ristorante",
+    'summary': "Este módulo es un trabajo de sge para administrar un restaurante",
     'description': """
-        Long description of module's purpose
+        Este módulo te permite manejar todos aspectos de un restaurante. Como por ejemplo el personal, los clientes, los menús, las reservas, los platos, las mesas, etc. El objetivo es aplicar todo lo que hemos aprendido en la asignatura hasta el momento y crear un módulo com distintas funcionalidades.
     """,
-
-    'author': "My Company",
+    'author': "Sekiro Team",
     'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
+    'category': 'Administration',
     'version': '0.1',
-
-    # any module necessary for this one to work correctly
     'depends': ['base'],
-
-    # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    'demo': ['demo/demo.xml',],
 }
