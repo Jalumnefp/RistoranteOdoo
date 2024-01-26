@@ -4,7 +4,7 @@
   <data>
 
       <record model="ir.ui.view" id="view_ristorante_product_list">
-          <field name="name">Ristorante Product List</field>
+          <field name="name">Product</field>
           <field name="model">ristorante.product</field>
           <field name="arch" type="xml">
               <tree>
@@ -14,18 +14,77 @@
           </field>
       </record>
 
+      <record model="ir.ui.view" id="view_ristorante_menu_list">
+          <field name="name">Menu</field>
+          <field name="model">ristorante.menu</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="name"/>
+                  <field name="description"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.ui.view" id="view_ristorante_reserva_list">
+          <field name="name">Reserva</field>
+          <field name="model">ristorante.reserva</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="name"/>
+                  <field name="id"/>
+              </tree>
+          </field>
+      </record>
+
+      <record model="ir.ui.view" id="view_ristorante_camarero_list">
+          <field name="name">Camarero</field>
+          <field name="model">ristorante.cambrer</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="dni" />
+                  <field name="name" />
+              </tree>
+          </field>
+      </record>
+
+
+
+
       <record model="ir.actions.act_window" id="action_ristorante_product_window">
           <field name="name">Products</field>
           <field name="res_model">ristorante.product</field>
           <field name="view_mode">tree,form</field>
       </record>
 
-      <menuitem name="Ristorante" id="menu_ristorante_root" />
+      <record model="ir.actions.act_window" id="action_ristorante_menu_window">
+          <field name="name">Menu</field>
+          <field name="res_model">ristorante.menu</field>
+          <field name="view_mode">tree,form</field>
+      </record>
 
-      <menuitem name="Management" id="menu_ristorante_management" parent="menu_ristorante_root" />
+      <record model="ir.actions.act_window" id="action_ristorante_reserva_window">
+          <field name="name">Reserva</field>
+          <field name="res_model">ristorante.reserva</field>
+          <field name="view_mode">tree,form</field>
+      </record>
 
-      <menuitem name="Product List" id="menu_ristorante_product_list" parent="menu_ristorante_management"
-          action="action_ristorante_product_window" />
+      <record model="ir.actions.act_window" id="action_ristorante_camarero_window">
+          <field name="name">Camarero</field>
+          <field name="res_model">ristorante.cambrer</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+
+
+
+      <menuitem name="Ristorante" id="menu_root" />
+
+      <menuitem name="Empleados" id="menu_empleados" parent="menu_root" />
+
+      <menuitem name="Productes" id="menu_ristorante_product" parent="menu_root" action="action_ristorante_product_window" />
+      <menuitem name="Menus" id="menu_ristorante_menu" parent="menu_root" action="action_ristorante_menu_window" />
+      <menuitem name="Reserves" id="menu_ristorante_reserva" parent="menu_root" action="action_ristorante_reserva_window" />
+      <menuitem name="Camareros" id="menu_ristorante_camarero" parent="menu_empleados" action="action_ristorante_camarero_window" />
 
   </data>
 </odoo>
