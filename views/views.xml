@@ -1,7 +1,7 @@
-<!-- Archivo: ristorante_views.xml -->
-
 <odoo>
   <data>
+
+
 
       <record model="ir.ui.view" id="view_ristorante_product_list">
           <field name="name">Product</field>
@@ -47,6 +47,17 @@
           </field>
       </record>
 
+      <record model="ir.ui.view" id="view_ristorante_cliente_list">
+          <field name="name">Cliente</field>
+          <field name="model">ristorante.client</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="dni" />
+                  <field name="name" />
+              </tree>
+          </field>
+      </record>
+
 
 
 
@@ -74,17 +85,33 @@
           <field name="view_mode">tree,form</field>
       </record>
 
+      <record model="ir.actions.act_window" id="action_ristorante_cliente_window">
+          <field name="name">Cliente</field>
+          <field name="res_model">ristorante.client</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_ristorante_cuiner_window">
+          <field name="name">Cuiner</field>
+          <field name="res_model">ristorante.cuiner</field>
+          <field name="view_mode">tree,form</field>
+      </record>
 
 
 
-      <menuitem name="Ristorante" id="menu_root" />
 
-      <menuitem name="Empleados" id="menu_empleados" parent="menu_root" />
+      <menuitem name="Ristorante" id="menu_root" sequence="1" />
 
-      <menuitem name="Productes" id="menu_ristorante_product" parent="menu_root" action="action_ristorante_product_window" />
-      <menuitem name="Menus" id="menu_ristorante_menu" parent="menu_root" action="action_ristorante_menu_window" />
-      <menuitem name="Reserves" id="menu_ristorante_reserva" parent="menu_root" action="action_ristorante_reserva_window" />
-      <menuitem name="Camareros" id="menu_ristorante_camarero" parent="menu_empleados" action="action_ristorante_camarero_window" />
+      <menuitem name="Empleados" id="menu_empleados" parent="menu_root" sequence="2" />
 
+      <menuitem name="Camareros" id="menu_ristorante_camarero" parent="menu_empleados" action="action_ristorante_camarero_window" sequence="1" />
+      <menuitem name="Cocineros" id="menu_ristorante_cuiner" parent="menu_empleados" action="action_ristorante_cuiner_window" sequence="2" />
+
+      <menuitem name="Clientes" id="menu_ristorante_cliente" parent="menu_root" action="action_ristorante_cliente_window" sequence="3" />
+      <menuitem name="Reserves" id="menu_ristorante_reserva" parent="menu_root" action="action_ristorante_reserva_window" sequence="4" />
+      <menuitem name="Productes" id="menu_ristorante_product" parent="menu_root" action="action_ristorante_product_window" sequence="5" />
+      <menuitem name="Menus" id="menu_ristorante_menu" parent="menu_root" action="action_ristorante_menu_window" sequence="6" />
+      
+      
   </data>
 </odoo>

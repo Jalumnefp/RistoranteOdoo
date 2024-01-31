@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from odoo.models import Model, AbstractModel
-from odoo.fields import Char, Text, Boolean, Integer, Date
+from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2Many, One2one
 
 
 class Product(Model):
     _name = 'ristorante.product'
     _description = 'Los platos del menú'
     
-    name = Char(string="Name", required="True")
-    description = Text(string="Description")
+    name = Char(string="Nombre", required="True")
+    description = Text(string="Descripción")
     #price = fields.Monetary(string="Price")
     
     #currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.company.currency_id.id)
@@ -19,11 +19,11 @@ class Menu(Model):
     _name = 'ristorante.menu'
     _description = 'El menu del restaurante'
 
-    name = Char(string="Name")
-    description = Text(string="Description")
+    name = Char(string="Nombre")
+    description = Text(string="Descripción")
     isVip = Boolean()
     
-    #products = fields.One2many(Products, string="Products")
+    products = Many2many('ristorante.product', relation="menu_product_rel", string="Productos")
     
     
 class Reserva(Model):
@@ -32,7 +32,8 @@ class Reserva(Model):
     
     id = Integer()
     name = Char()
-    #cliente = fields.One2one()
+    
+    client = Many2one('ristorante.client', string="Cliente")
 
 
 class Persona(AbstractModel):
@@ -64,13 +65,16 @@ class Cambrer(Model, Empleado):
     _description = 'Cambrers del restaurant'
     
     #id_ordre = fields.One2Many
-    
+
+class Cuiner(Model, Empleado):
+    _name = 'ristorante.cuiner'
+    _description  ='Cuiners del restaurant'
+
     
 class Ordre(Model):
     _name = 'ristorante.ordre'
     _description = 'Ordres dels clients del restaurant'
 
-    id = Integer()
     #taula = fields.One2one()
     #menu = fields.Many2one()
     status = Boolean()
