@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo.models import Model, AbstractModel
-from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2Many, One2one
+from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many
 
 
 class Product(Model):
@@ -22,7 +22,6 @@ class Menu(Model):
     name = Char(string="Nombre")
     description = Text(string="Descripción")
     isVip = Boolean()
-    
     products = Many2many('ristorante.product', relation="menu_product_rel", string="Productos")
     
     
@@ -75,9 +74,12 @@ class Ordre(Model):
     _name = 'ristorante.ordre'
     _description = 'Ordres dels clients del restaurant'
 
-    #taula = fields.One2one()
-    #menu = fields.Many2one()
     status = Boolean()
+
+    cuiner = Many2one('ristorante.cuiner', string='Cuiner')
+    cambrer = Many2one('ristorante.cambrer', string='Cambrer')
+    taula = Many2one('ristorante.taula', string='Taula')
+
     
     
 class Taula(Model):
@@ -90,3 +92,5 @@ class Taula(Model):
     isVip = Boolean()
     isExterior = Boolean()
     #reservada = fields.Boolean()
+
+    ordres = One2many('ristorante.ordre', 'taula', string="Ordre")

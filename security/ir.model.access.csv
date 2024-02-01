@@ -5,3 +5,4 @@ access_ristorante_reserva,ristorante.reserva,model_ristorante_reserva,base.group
 access_ristorante_cambrer,ristorante.cambrer,model_ristorante_cambrer,base.group_user,1,1,1,1
 access_ristorante_client,ristorante.client,model_ristorante_client,base.group_user,1,1,1,1
 access_ristorante_cuiner,ristorante.cuiner,model_ristorante_cuiner,base.group_user,1,1,1,1
+access_ristorante_ordre,ristorante.ordre,model_ristorante_ordre,base.group_user,1,1,1,1
