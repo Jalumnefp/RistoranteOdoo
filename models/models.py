@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo.models import Model, AbstractModel
-from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many
+from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many, Monetary, Selection
 
 
 class Product(Model):
@@ -10,9 +10,9 @@ class Product(Model):
     
     name = Char(string="Nombre", required="True")
     description = Text(string="Descripción")
-    #price = fields.Monetary(string="Price")
+    price = Integer(string="Price")
     
-    #currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.company.currency_id.id)
+    menus = Many2many('ristorante.menu')
 
 
 class Menu(Model):
@@ -22,7 +22,7 @@ class Menu(Model):
     name = Char(string="Nombre")
     description = Text(string="Descripción")
     isVip = Boolean()
-    products = Many2many('ristorante.product', relation="menu_product_rel", string="Productos")
+    products = Many2many('ristorante.product', string="Productos")
     
     
 class Reserva(Model):
@@ -31,6 +31,7 @@ class Reserva(Model):
     
     id = Integer()
     name = Char()
+    date = Date()
     
     client = Many2one('ristorante.client', string="Cliente")
 
@@ -49,48 +50,50 @@ class Client(Model, Persona):
     _name = 'ristorante.client'
     _description = 'Clientes del restaurante'
     
-    #reservas
+    reservas = One2many('ristorante.reserva', 'client', string="Reservas")
     
+
 
 class Empleado(Persona):
     _name = 'ristorante.empleado'
     _description = 'Empleados del restaurante'
     
-    #salary = fields.Monetary(string="Salary")
+    salary = Integer(string="Salary")
     
 
 class Cambrer(Model, Empleado):
     _name = 'ristorante.cambrer'
     _description = 'Cambrers del restaurant'
     
-    #id_ordre = fields.One2Many
+    ordres = One2many('ristorante.ordre', 'cambrer', string="Ordres")
 
 class Cuiner(Model, Empleado):
     _name = 'ristorante.cuiner'
     _description  ='Cuiners del restaurant'
 
-    
-class Ordre(Model):
-    _name = 'ristorante.ordre'
-    _description = 'Ordres dels clients del restaurant'
+    ordres = One2many('ristorante.ordre', 'cuiner', string="Ordres")
 
-    status = Boolean()
 
-    cuiner = Many2one('ristorante.cuiner', string='Cuiner')
-    cambrer = Many2one('ristorante.cambrer', string='Cambrer')
-    taula = Many2one('ristorante.taula', string='Taula')
-
-    
-    
 class Taula(Model):
     _name = 'ristorante.taula'
     _description = 'Taules del restaurant'
     
-    nom = Char()
-    n_seients = Integer()
-    isOcupat = Boolean()
-    isVip = Boolean()
-    isExterior = Boolean()
-    #reservada = fields.Boolean()
+    name = Char(string="Nom")
+    n_seients = Integer(string="Nº Seients")
+    isOcupat = Boolean(string="Ocupat")
+    isVip = Boolean(string="VIP")
+    isExterior = Boolean(string="Exterior")
+    reservada = Boolean(string="Reservada")
 
     ordres = One2many('ristorante.ordre', 'taula', string="Ordre")
+
+
+class Ordre(Model):
+    _name = 'ristorante.ordre'
+    _description = 'Ordres dels clients del restaurant'
+
+    status = Selection([('option1', 'Pedido'), ('option2', 'Haciendo'), ('option3', 'Entregando')], string="Estado")
+
+    cuiner = Many2one('ristorante.cuiner', string='Cuiner')
+    cambrer = Many2one('ristorante.cambrer', string='Cambrer')
+    taula = Many2one('ristorante.taula', string='Taula')

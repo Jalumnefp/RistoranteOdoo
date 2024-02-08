@@ -69,6 +69,17 @@
           </field>
       </record>
 
+      <record model="ir.ui.view" id="view_ristorante_taula_list">
+          <field name="name">Taula</field>
+          <field name="model">ristorante.taula</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="name" />
+                  <field name="reservada" />
+              </tree>
+          </field>
+      </record>
+
 
 
 
@@ -114,6 +125,12 @@
           <field name="view_mode">tree,form</field>
       </record>
 
+      <record model="ir.actions.act_window" id="action_ristorante_taula_window">
+          <field name="name">Taula</field>
+          <field name="res_model">ristorante.taula</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
 
 
 
@@ -129,6 +146,7 @@
       <menuitem name="Productes" id="menu_ristorante_product" parent="menu_root" action="action_ristorante_product_window" sequence="5" />
       <menuitem name="Menus" id="menu_ristorante_menu" parent="menu_root" action="action_ristorante_menu_window" sequence="6" />
       <menuitem name="Ordres" id="menu_ristorante_ordre" parent="menu_root" action="action_ristorante_ordre_window" sequence="7" />
+      <menuitem name="Taula" id="menu_ristorante_taula" parent="menu_root" action="action_ristorante_taula_window" sequence="8" />
       
       
   </data>
