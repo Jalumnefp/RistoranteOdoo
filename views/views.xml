@@ -1,18 +1,7 @@
 <odoo>
   <data>
 
-
-
-      <record model="ir.ui.view" id="view_ristorante_product_list">
-          <field name="name">Product</field>
-          <field name="model">ristorante.product</field>
-          <field name="arch" type="xml">
-              <tree>
-                  <field name="name"/>
-                  <field name="description"/>
-              </tree>
-          </field>
-      </record>
+    <!-- TREE VIEW -->
 
       <record model="ir.ui.view" id="view_ristorante_menu_list">
           <field name="name">Menu</field>
@@ -81,12 +70,47 @@
       </record>
 
 
+      <!-- KANBAN VIEW -->
 
+      <record model="ir.ui.view" id="view_ristorante_product_kanban">
+          <field name="name">Product</field>
+          <field name="model">ristorante.product</field>
+          <field name="arch" type="xml">
+              <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click o_kanban_record_has_image_fill">
+                            <a type="open">
+                                <field name="photo" nolabel="1" widget="image" />
+                            </a>
+                            <t t-name="kanban-content">
+                                <a type="edit">
+                                    <h3>
+                                    <field name="name"> </field>
+                                    </h3>
+                                    <p><field name="name"/></p>
+                                    <p><field name="description"/></p>
+                                </a>
+                            </t>
+                        </div>
+                    </t>           
+                </templates>  
+              </kanban>
+          </field>
+      </record>
+
+
+      <!-- FORM VIEW -->
+
+      
+
+
+      <!-- ACTIONS -->
 
       <record model="ir.actions.act_window" id="action_ristorante_product_window">
           <field name="name">Products</field>
           <field name="res_model">ristorante.product</field>
-          <field name="view_mode">tree,form</field>
+          <field name="view_mode">kanban,form</field>
       </record>
 
       <record model="ir.actions.act_window" id="action_ristorante_menu_window">
@@ -132,7 +156,7 @@
       </record>
 
 
-
+      <!-- MENU -->
 
       <menuitem name="Ristorante" id="menu_root" sequence="1" />
 

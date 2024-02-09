@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo.models import Model, AbstractModel
-from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many, Monetary, Selection
+from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many, Monetary, Selection, Image
 
 
 class Product(Model):
@@ -11,6 +11,8 @@ class Product(Model):
     name = Char(string="Nombre", required="True")
     description = Text(string="Descripción")
     price = Integer(string="Price")
+    photo = Image(max_width=200, max_height=200)
+
     
     menus = Many2many('ristorante.menu')
 
