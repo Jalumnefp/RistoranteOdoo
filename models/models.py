@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo.models import Model, AbstractModel
-from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many, Monetary, Selection, Image
+from odoo.fields import Char, Text, Boolean, Integer, Date, Many2many, Many2one, One2many, Monetary, Selection, Image, Float
+from odoo import api
 
 
 class Product(Model):
@@ -25,6 +26,12 @@ class Menu(Model):
     description = Text(string="Descripción")
     isVip = Boolean()
     products = Many2many('ristorante.product', string="Productos")
+    preu_total = Float(compute='_calcula_preu_total', string="Preu total")
+
+    @api.depends('products')
+    def _calcula_preu_total(self):
+        for menu in self:
+            menu.preu_total = sum(product.price for product in menu.products)
     
     
 class Reserva(Model):
