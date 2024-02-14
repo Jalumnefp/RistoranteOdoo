@@ -56,6 +56,8 @@
               <tree>
                   <field name="taula" />
                   <field name="status" />
+                  <field name="cuiner" />
+                  <field name="cambrer" />
               </tree>
           </field>
       </record>
@@ -67,6 +69,11 @@
               <tree>
                   <field name="name" />
                   <field name="reservada" />
+                  <field name="n_seients" />
+                  <field name="isOcupat" />
+                  <field name="isVip" />
+                  <field name="isExterior" />
+                  <field name="ordres" />
               </tree>
           </field>
       </record>
