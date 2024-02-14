@@ -33,7 +33,7 @@ class Reserva(Model):
     
     id = Integer()
     name = Char()
-    date = Date()
+    date = Date(default=Date.today())
     
     client = Many2one('ristorante.client', string="Cliente")
 
